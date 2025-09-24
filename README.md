@@ -1,1 +1,3 @@
-# nix-config
+# nix-config.
+
+Work in progress.
