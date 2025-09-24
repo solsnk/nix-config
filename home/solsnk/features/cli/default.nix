@@ -12,6 +12,7 @@
     bottom # System viewer
     ncdu # TUI disk usage
     eza # Better ls
+    ente-auth # ente-auth desktop app.
     ripgrep # Better grep
     fd # Better find
     httpie # Better curl
