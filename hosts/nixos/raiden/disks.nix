@@ -17,6 +17,7 @@ in {
   imports = [
     inputs.disko.nixosModules.disko
   ];
+
   disko.devices = {
     disk = {
       main = {
@@ -35,59 +36,44 @@ in {
                 mountOptions = ["umask=0077"];
               };
             };
-            luks = {
+            root = {
               size = "100%";
               content = {
-                type = "luks";
-                name = "crypted";
-                # These options can improve performance on NVMe drives by adjusting
-                # how LUKS handles I/O operations. They are not essential but can
-                # provide a noticeable boost in disk speed.
-                extraOpenArgs = [
-                  "--allow-discards"
-                  "--perf-no_read_workqueue"
-                  "--perf-no_write_workqueue"
-                ];
-                settings = {
-                  allowDiscards = true;
-                };
-                content = {
-                  type = "btrfs";
-                  extraArgs = ["-L" "${hostname}" "-f"];
-                  postCreateHook = ''
-                    mount -t btrfs /dev/disk/by-label/${hostname} /mnt
-                    btrfs subvolume snapshot -r /mnt /mnt/root-blank
-                    umount /mnt
-                  '';
-                  subvolumes = {
-                    "/root" = {
-                      mountpoint = "/";
-                      mountOptions = [
-                        "subvol=root"
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                    };
-                    "/nix" = {
-                      mountpoint = "/nix";
-                      mountOptions = [
-                        "subvol=nix"
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                    };
-                    "/persist" = {
-                      mountpoint = "/persist";
-                      mountOptions = [
-                        "subvol=persist"
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                    };
-                    "/swap" = {
-                      mountpoint = "/swap";
-                      swap.swapfile.size = "12G";
-                    };
+                type = "btrfs";
+                extraArgs = ["-L" "${hostname}" "-f"];
+                postCreateHook = ''
+                  mount -t btrfs /dev/disk/by-label/${hostname} /mnt
+                  btrfs subvolume snapshot -r /mnt /mnt/root-blank
+                  umount /mnt
+                '';
+                subvolumes = {
+                  "/root" = {
+                    mountpoint = "/";
+                    mountOptions = [
+                      "subvol=root"
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+                  "/nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = [
+                      "subvol=nix"
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+                  "/persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = [
+                      "subvol=persist"
+                      "compress=zstd"
+                      "noatime"
+                    ];
+                  };
+                  "/swap" = {
+                    mountpoint = "/swap";
+                    swap.swapfile.size = "12G";
                   };
                 };
               };
