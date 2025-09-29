@@ -14,11 +14,13 @@
     fastfetch # System information tool.
     fd # Fast alternative to 'find'.
     fzf # Command-line fuzzy finder.
+    gnome-keyring
     jq # Command-line JSON processor.
     just # A command runner for project-specific commands.
     pciutils # PCI utilities for device inspection.
     ripgrep # Fast alternative to grep.
     sbctl # Secure Boot utils.
+    seahorse
     unzip # Zip file extraction utility.
   ];
 

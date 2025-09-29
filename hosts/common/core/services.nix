@@ -13,4 +13,6 @@
   services.thermald.enable = true;
   services.upower.enable = true;
   services.devmon.enable = true;
+  # Enable GNOME keyring.
+  services.gnome.gnome-keyring.enable = true;
 }

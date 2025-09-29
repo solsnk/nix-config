@@ -31,18 +31,22 @@
   # The default open file limit is often too low for modern applications,
   # especially for development, gaming, and other intensive tasks. Increasing
   # this limit prevents "too many open files" errors.
-  security.pam.loginLimits = [
-    {
-      domain = "@wheel";
-      item = "nofile";
-      type = "soft";
-      value = "524288";
-    }
-    {
-      domain = "@wheel";
-      item = "nofile";
-      type = "hard";
-      value = "1048576";
-    }
-  ];
+  security.pam = {
+    # Enable the logon unlock of GNOME keyring.
+    services.login.enableGnomeKeyring = true;
+    loginLimits = [
+      {
+        domain = "@wheel";
+        item = "nofile";
+        type = "soft";
+        value = "524288";
+      }
+      {
+        domain = "@wheel";
+        item = "nofile";
+        type = "hard";
+        value = "1048576";
+      }
+    ];
+  };
 }
