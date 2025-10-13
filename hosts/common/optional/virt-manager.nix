@@ -5,16 +5,6 @@
       qemu = {
         # Enable software TPM for QEMU
         swtpm.enable = true;
-        # Enable OVMF with Secure Boot and TPM support
-        ovmf = {
-          enable = true;
-          packages = [
-            (pkgs.OVMF.override {
-              secureBoot = true;
-              tpmSupport = true;
-            }).fd
-          ];
-        };
       };
     };
   };
