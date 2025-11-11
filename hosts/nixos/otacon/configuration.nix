@@ -91,7 +91,6 @@
     lact
     clinfo # opencl testing
     vulkan-tools # vulkaninfo
-    ipmiview
     unetbootin
   ];
 }

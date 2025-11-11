@@ -72,12 +72,12 @@
   # Include some packages by default. I typically
   # include anything I need to work with nix.
   home.packages = with pkgs; [
-    nixd # Nix LSP.
+    #nixd # Nix LSP.
     alejandra # Nix formatter.
     nixfmt-rfc-style # Another nix formatter.
-    nvd # Differ.
-    nix-diff # Differ, more detailed.
-    nix-output-monitor
+    #nvd # Differ.
+    #nix-diff # Differ, more detailed.
+    #nix-output-monitor
     nh # A nice wrapper for managing NixOS and Home Manager.
   ];
 
